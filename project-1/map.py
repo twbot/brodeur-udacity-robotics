@@ -6,30 +6,7 @@ import numpy as np
 import cv2
 import os
 
-def perspect_transform(img, src, dst):
-
-	# Get transform matrix using cv2.getPerspectivTransform()
-	M = cv2.getPerspectiveTransform(src, dst)
-	# Warp image using cv2.warpPerspective()
-	# keep same size as input image
-	warped = cv2.warpPerspective(img, M, (img.shape[1], img.shape[0]))
-	# Return the result
-	return warped
-
-def color_thresholding(img, rgb_thresh=(0,0,0)):
-	color_select = np.zeros_like(img[:,:,0])
-	thresh_vals = img> rgb_thresh
-	thresh = (img[:,:,0] > rgb_thresh[0]) & (img[:,:,1] > rgb_thresh[1]) & (img[:,:,2] > rgb_thresh[2])
-	color_select[thresh] = 1
-	return color_select
-
-def rover_coords(binary_img): 
-    # Calculate pixel positions with reference to the rover 
-    # position being at the center bottom of the image.  
-	x, y = binary_img.nonzero()
-	x_pixel = -(x-binary_img.shape[0]).astype(np.float32)
-	y_pixel = -(y-binary_img.shape[1]/2).astype(np.float32)
-	return x_pixel, y_pixel
+from extra_functions import perspect_transform, color_thresholding, rover_coords
 
 def main():
 	np.set_printoptions(threshold = np.inf)

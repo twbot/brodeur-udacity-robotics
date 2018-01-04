@@ -16,7 +16,8 @@ def perspect_transform(img, src, dst):
 	return warped
 
 def main():
-	filename = '/Users/twbot/Desktop/grid.jpg'
+	# filename = '/Users/twbot/Desktop/udacity-robotics/project-1/ex_imgs/grid.jpg'
+	filename = '/Users/twbot/Downloads/sample1.jpg'
 	img = mpimg.imread(filename)
 	print(img.shape)
 	plt.imshow(img)
